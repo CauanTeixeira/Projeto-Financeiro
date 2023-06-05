@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 namespace App\Http\Controllers;
 
+use App\Models\billet;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -63,12 +64,13 @@ class userController extends Controller
     }
     public function positive(Request $request){
         $user = auth()->user();
+        
         if($request->date){
             $payment = new Payment;
 
             $payment->value = $request->value;
             $payment->created_at = $request->date;
-            $payment->Description = 'a';
+            $payment->Description = $request->Description;
             $payment->user_id = $user->id;
             $payment->save();
             return redirect('/dashboard');
@@ -81,7 +83,7 @@ class userController extends Controller
 
         $payment->value = $request->value;
         $payment->created_at = new Datetime();
-        $payment->Description = 'a';
+        $payment->Description = $request->Description;
         $payment->user_id = $user->id;
         $payment->save();
 
@@ -96,7 +98,7 @@ class userController extends Controller
 
             $payment->value = -$request->value;
             $payment->created_at = $request->date;
-            $payment->Description = 'a';
+            $payment->Description = $request->Description;
             $payment->user_id = $user->id;
             $payment->save();
             return redirect('/dashboard');
@@ -110,10 +112,17 @@ class userController extends Controller
 
         $payment->value = -$request->value;
         $payment->created_at = new Datetime();
-        $payment->Description = 'a';
+        $payment->Description = $request->Description;
         $payment->user_id = $user->id;
         $payment->save();
 
+        return redirect('/dashboard');
+
+    }
+    public function billet(Request $request){
+        $user = Auth::id();
+        $billet = new billet;
+        $billet = $billet->register($user, $request);
         return redirect('/dashboard');
 
     }

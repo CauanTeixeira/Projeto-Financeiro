@@ -23,7 +23,7 @@ Route::post('/registrar', [userController::class, 'store'])->name('registrar');
 Route::get('/positive', [userController::class, 'positive'])->name('saldo')->middleware('auth');
 Route::get('/negative', [userController::class, 'negative'])->name('saldo')->middleware('auth');
 
-
+route::get('/billet',[userController::class, 'billet'])->middleware('auth');
 
 
 Route::get('/chart', function () {

@@ -21,18 +21,24 @@
 
     <form action="/positive">
         <h2>Registrar transferência recebida</h2>
+        <label for="Description">Descrição</label>
+        <input type="text" name="Description" required>
         <label for="Valor">Valor</label>
         <input type="number" name="value" required>
         <input type="submit">
     </form>
     <form action="/negative">
         <h2>Registrar transferência paga</h2>
+        <label for="Description">Descrição</label>
+        <input type="text" name="Description" required>
         <label for="Valor">Valor</label>
         <input type="number" name="value" required>
         <input type="submit">
     </form>
-    <form>
+    <form action="/billet">
         <h2>Registrar boleto a receber</h2>
+        <label for="Description">Descrição</label>
+        <input type="text" name="Description" required>
         <label for="Valor">Valor</label>
         <input type="number" name="value" required>
 
